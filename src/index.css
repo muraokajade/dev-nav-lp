@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* 背景ノイズとグラデ（重ねがけ。ノイズは軽い粒状感） */
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -20%, rgba(56,189,248,.15), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(139,92,246,.12), transparent 55%),
+    #0f172a; /* slate-900 相当 */
+}
+
+/* キラッと光るボタン用 */
+@keyframes shine {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
+  transform: translateX(-150%);
+  animation: shine 2.2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
