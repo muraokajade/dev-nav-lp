@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@react-three/fiber": "^9.3.0",
+    "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1",
     "three": "^0.179.1",
     "three-stdlib": "^2.36.0"
   },

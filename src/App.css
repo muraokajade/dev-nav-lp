@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* ==== React Syntax Highlighter safety reset ==== */
+.rsh-reset pre,
+.rsh-reset code {
+  white-space: pre !important;
+  word-break: normal !important;      /* no break-all */
+  overflow-wrap: normal !important;   /* no anywhere */
+  letter-spacing: 0 !important;
+}
+
+.rsh-reset pre code span {
+  display: inline !important;         /* token が block になる事故を防止 */
+}

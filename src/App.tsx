@@ -1,3 +1,4 @@
+// src/App.tsx
 import React from "react";
 import { site } from "./data/site";
 import { Hero } from "./components/Hero";
@@ -11,13 +12,22 @@ import { Footer } from "./components/Footer";
 
 const App: React.FC = () => {
   return (
-    <div className="text-white font-[Inter]">
+    <div className="text-white font-[Inter] scroll-smooth">
+      {/* ページ先頭アンカー（視覚的には非表示） */}
+      <span id="top" className="sr-only" aria-hidden="true" />
+
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="text-xl font-extrabold">
+          {/* ブランド＝ホームリンク */}
+          <a
+            href="#top"
+            aria-label="Go to home"
+            className="text-xl font-extrabold rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 hover:opacity-90"
+          >
             <span className="text-sky-400">{site.brand}</span>
-          </div>
+          </a>
+
           <nav className="hidden md:flex gap-6 text-sm text-gray-300">
             {site.nav.map((n) => (
               <a key={n.href} href={n.href} className="hover:text-white">
@@ -25,6 +35,7 @@ const App: React.FC = () => {
               </a>
             ))}
           </nav>
+
           <a
             href="#contact"
             className="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-sm font-semibold btn-shine"
