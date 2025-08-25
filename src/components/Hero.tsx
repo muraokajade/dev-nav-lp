@@ -3,7 +3,27 @@ import React from "react";
 import  Section  from "./Section";
 import { site } from "../data/site";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import { RightLogos } from "./RightLogos";
+// import { RightLogos } from "./RightLogos";
+// Hero.tsx
+const RightLogos = React.lazy(() =>
+  import("./RightLogos").then(m => ({ default: m.RightLogos }))
+);
+
+
+function useVisible() {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { rootMargin: "200px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [visible]);
+  return { ref, visible };
+}
 
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border bg-sky-500/15 text-sky-300 border-sky-500/30">
