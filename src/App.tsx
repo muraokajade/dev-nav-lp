@@ -7,7 +7,7 @@ import { Flow } from "./components/Flow";
 import { Voices } from "./components/Voices";
 import { FAQ } from "./components/FAQ";
 import { CTA } from "./components/CTA";
-import { Section } from "./components/Section";
+import  Section  from "./components/Section";
 import { Footer } from "./components/Footer";
 
 const App: React.FC = () => {

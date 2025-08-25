@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Section } from "./Section";
+import  Section  from "./Section";
 import { faqs } from "../data/faq";
 
 const Item: React.FC<{ q: string; a: string }> = ({ q, a }) => {

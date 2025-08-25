@@ -1,6 +1,6 @@
 // src/components/Showcase.tsx
 import React from "react";
-import { Section } from "./Section";
+import  Section  from "./Section";
 
 export const Showcase: React.FC = () => {
   const [open, setOpen] = React.useState(false);

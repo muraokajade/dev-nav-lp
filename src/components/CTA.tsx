@@ -1,6 +1,6 @@
 // src/components/CTA.tsx
 import React from "react";
-import { Section } from "./Section";
+import  Section  from "./Section";
 import { site } from "../data/site";
 
 export const CTA: React.FC = () => (

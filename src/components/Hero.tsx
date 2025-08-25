@@ -1,6 +1,6 @@
 // src/components/Hero.tsx
 import React from "react";
-import { Section } from "./Section";
+import  Section  from "./Section";
 import { site } from "../data/site";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { RightLogos } from "./RightLogos";
