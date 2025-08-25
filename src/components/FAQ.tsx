@@ -19,7 +19,7 @@ const Item: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 };
 
 export const FAQ: React.FC = () => (
-  <Section id="faq" className="py-14">
+  <Section id="faq">
     <div className="mb-8">
       <div className="text-xs uppercase tracking-[.2em] text-sky-300/80 mb-2">FAQ</div>
       <h2 className="text-2xl md:text-3xl font-extrabold text-white">よくある質問</h2>

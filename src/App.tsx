@@ -12,18 +12,15 @@ import { Footer } from "./components/Footer";
 
 const App: React.FC = () => {
   return (
-    <div className="text-white font-[Inter] scroll-smooth">
-      {/* ページ先頭アンカー（視覚的には非表示） */}
-      <span id="top" className="sr-only" aria-hidden="true" />
-
-      {/* Header */}
+    // ヘッダーかぶり対策（stickyヘッダーぶんのオフセット）
+    <div id="top" className="text-white font-[Inter] scroll-smooth scroll-pt-14">
+      {/* Header（本文と同じ幅に統一） */}
       <header className="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          {/* ブランド＝ホームリンク */}
+        <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
           <a
             href="#top"
             aria-label="Go to home"
-            className="text-xl font-extrabold rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 hover:opacity-90"
+            className="text-xl font-extrabold hover:opacity-90 focus-visible:ring-2 focus-visible:ring-sky-400 rounded"
           >
             <span className="text-sky-400">{site.brand}</span>
           </a>
@@ -36,8 +33,11 @@ const App: React.FC = () => {
             ))}
           </nav>
 
+          {/* 資料請求は本体サイトへ */}
           <a
-            href="#contact"
+            href={site.requestUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-sm font-semibold btn-shine"
           >
             {site.ctaLabel}
@@ -45,37 +45,45 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Sections */}
-      <Hero />
-      <Features />
-      <Flow />
-      <Voices />
-      <FAQ />
-      <CTA />
+      {/* Main：幅と縦リズムを一括管理。モバイルは固定CTAぶつかり回避で pb-20 */}
+      <main className="max-w-5xl mx-auto px-4 pb-20 md:pb-0">
+        <div className="space-y-12 md:space-y-20 lg:space-y-24">
+          <Hero />
+          <Features />
+          <Flow />
+          <Voices />
+          <FAQ />
+          <CTA />
 
-      {/* Contact（ダミー） */}
-      <Section id="contact" className="py-14">
-        <div className="mb-8">
-          <div className="text-xs uppercase tracking-[.2em] text-sky-300/80 mb-2">Contact</div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white">お問い合わせ</h2>
+          {/* Contact：本体サイトへ誘導（mailtoは使わない運用） */}
+          <Section id="contact">
+            <div className="mb-6">
+              <div className="text-xs uppercase tracking-[.2em] text-sky-300/80 mb-2">Contact</div>
+              <h2 className="text-2xl md:text-3xl font-extrabold">お問い合わせ</h2>
+            </div>
+            <p className="text-gray-300 mb-4 text-sm">
+              資料請求/お問い合わせは本サイトのフォームからお願いします。
+            </p>
+            <a
+              href={site.requestUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10"
+            >
+              本サイトで資料請求する
+            </a>
+          </Section>
         </div>
-        <p className="text-gray-300 mb-6 text-sm">
-          フォームは後で差し替え。今はメールリンクだけ用意しています。
-        </p>
-        <a
-          href={`mailto:${site.contactMail}`}
-          className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10"
-        >
-          {site.contactMail} にメールする
-        </a>
-      </Section>
+      </main>
 
       <Footer />
 
-      {/* Sticky CTA（モバイル） */}
+      {/* Sticky CTA（モバイルも外部リンクに統一） */}
       <div className="fixed bottom-3 inset-x-0 px-4 md:hidden">
         <a
-          href="#contact"
+          href={site.requestUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="block text-center rounded-xl bg-sky-500 hover:bg-sky-400 font-bold py-3 btn-shine"
         >
           いますぐ資料請求

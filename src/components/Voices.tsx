@@ -3,7 +3,7 @@ import { Section } from "./Section";
 import { site } from "../data/site";
 
 export const Voices: React.FC = () => (
-  <Section id="voices" className="py-14">
+  <Section id="voices">
     <div className="mb-8">
       <div className="text-xs uppercase tracking-[.2em] text-sky-300/80 mb-2">Voices</div>
       <h2 className="text-2xl md:text-3xl font-extrabold text-white">受講者の声</h2>
