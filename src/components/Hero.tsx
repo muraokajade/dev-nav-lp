@@ -1,14 +1,12 @@
 // src/components/Hero.tsx
 import React from "react";
-import  Section  from "./Section";
+import Section from "./Section";
 import { site } from "../data/site";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-// import { RightLogos } from "./RightLogos";
-// Hero.tsx
-const RightLogos = React.lazy(() =>
-  import("./RightLogos").then(m => ({ default: m.RightLogos }))
-);
 
+const RightLogos = React.lazy(() =>
+  import("./RightLogos").then((m) => ({ default: m.RightLogos }))
+);
 
 function useVisible() {
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -16,35 +14,38 @@ function useVisible() {
   React.useEffect(() => {
     const el = ref.current;
     if (!el || visible) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setVisible(true); io.disconnect(); }
-    }, { rootMargin: "200px" });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [visible]);
   return { ref, visible };
 }
 
-const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+const Pill = React.memo<{ children: React.ReactNode }>(({ children }) => (
   <span className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full border bg-sky-500/15 text-sky-300 border-sky-500/30">
     {children}
   </span>
-);
+));
 
-const Stat: React.FC<{ k: string; v: string; sub?: string }> = ({
-  k,
-  v,
-  sub,
-}) => (
+const Stat = React.memo<{ k: string; v: string; sub?: string }>(({ k, v, sub }) => (
   <div className="p-5 rounded-2xl border border-white/10 bg-white/5">
     <div className="text-xs text-gray-400 mb-1">{k}</div>
     <div className="text-3xl font-extrabold text-white">{v}</div>
     {sub && <div className="text-xs text-gray-400 mt-1">{sub}</div>}
   </div>
-);
+));
 
 export const Hero: React.FC = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const { ref, visible } = useVisible();
 
   // 配置
   const reactPos = React.useMemo<[number, number, number]>(
@@ -71,7 +72,10 @@ export const Hero: React.FC = () => {
   const javaScale = isMobile ? 1.55 : 1.2;
 
   return (
-    <Section className="py-8 pb-0">
+    <Section
+      className="py-8 pb-0"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}
+    >
       <div className="grid md:grid-cols-2 gap-10 items-center">
         {/* 左カラム：テキスト */}
         <div>
@@ -111,16 +115,24 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* 右カラム：3Dロゴ */}
-        <RightLogos
-          reactPos={reactPos}
-          tsPos={tsPos}
-          springPos={springPos}
-          javaPos={javaPos}
-          reactScale={reactScale}
-          tsScale={tsScale}
-          springScale={springScale}
-          javaScale={javaScale}
-        />
+        <div ref={ref}>
+          {visible ? (
+            <React.Suspense fallback={<div className="h-64" />}>
+              <RightLogos
+                reactPos={reactPos}
+                tsPos={tsPos}
+                springPos={springPos}
+                javaPos={javaPos}
+                reactScale={reactScale}
+                tsScale={tsScale}
+                springScale={springScale}
+                javaScale={javaScale}
+              />
+            </React.Suspense>
+          ) : (
+            <div className="h-64" />
+          )}
+        </div>
       </div>
     </Section>
   );
