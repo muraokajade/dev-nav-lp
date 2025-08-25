@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
   const javaScale = isMobile ? 1.55 : 1.2;
 
   return (
-    <Section space="normal" flushBottom>
+    <Section className="py-8 pb-0">
       <div className="grid md:grid-cols-2 gap-10 items-center">
         {/* 左カラム：テキスト */}
         <div>
