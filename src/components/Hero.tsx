@@ -36,20 +36,6 @@ const Pill = React.memo<{ children: React.ReactNode }>(({ children }) => (
   </span>
 ));
 
-/** 統計カード：長文でもはみ出さないように折り返し＆レスポンシブサイズ */
-const Stat = React.memo<{ k: string; v: string; sub?: string }>(
-  ({ k, v, sub }) => (
-    <div className="p-5 rounded-2xl border border-white/10 bg-white/5 min-h-[96px]">
-      <div className="text-xs text-gray-400 mb-1">{k}</div>
-      <div className="text-2xl md:text-3xl font-extrabold text-white break-words whitespace-pre-wrap leading-tight">
-        {v}
-      </div>
-      {sub && (
-        <div className="text-xs text-gray-400 mt-1 break-words">{sub}</div>
-      )}
-    </div>
-  )
-);
 
 /** 3Dを避けたい環境（モバイル/低性能/省エネ設定）の判定 */
 function useShouldFallbackImage() {
