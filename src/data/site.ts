@@ -1,16 +1,16 @@
 // src/data/site.ts
 export const site = {
   brand: "DevNav+",
-  ctaLabel: "資料請求",
-  contactMail: "info@example.com",
+  // すべて「サイトを見る」に統一
+  ctaLabel: "サイトを見る",
 
-  // 本体サイトの資料請求/お問い合わせURL（ここだけ差し替えれば全体に反映）
-  requestUrl: "https://example.com/contact",
+  // 公式サイト（デモ）へ飛ばすだけ
+  requestUrl: "https://devnav.tech",
 
+  // 声・導入事例は使わないので削除
   nav: [
     { href: "#features",   label: "特徴" },
     { href: "#curriculum", label: "カリキュラム" },
-    { href: "#voices",     label: "導入事例" },
     { href: "#faq",        label: "FAQ" },
   ],
 
@@ -18,10 +18,11 @@ export const site = {
     badges: ["現場直結カリキュラム", "Q&A / 読了トラッキング"],
     headline: "3週間で、Spring × React を現場投入レベルに。",
     sub: "手を動かすハンズオンと、詰まったらすぐ聞けるQ&A。読了管理で可視化し、独学の回り道を最短化。",
+    // 誇張・偽装になりうる数値を排除し、事実ベースに変更
     stats: [
-      { k: "満足度",   v: "4.8 / 5", sub: "受講者アンケート" },
-      { k: "最短到達", v: "3 週間",   sub: "現場投入まで" },
-      { k: "対応",     v: "24h 以内", sub: "Q&A 返信" },
+      { k: "公開状況", v: "公開中",    sub: "devnav.tech" },
+      { k: "構成",     v: "Vercel/Koyeb/Neon", sub: "本番同等" },
+      { k: "記事数",   v: "100+ 本",     sub: "手順解説" },
     ],
   },
 
@@ -37,14 +38,12 @@ export const site = {
     { step: "STEP 3", title: "CRUD＋認証", body: "DB/CRUD/JWT 認証まで仕上げ。" },
   ],
 
-  voices: [
-    { name: "Web 系自社開発 / S さん", quote: "API 設計からフロントまで“今の現場のやり方”で学べた。Q&A の返信が速く、詰まらず進められた。" },
-    { name: "受託 SI / K さん",         quote: "読了トラッキングで上長レビューがやりやすい。チーム全体で進捗が可視化できるのが刺さった。" },
-  ],
+  // 利用者の声や満足度は掲載しない方針のため削除
+  // voices: [],
 
   cta: {
-    heading: "まずは5分で概要共有",
-    body: "要件・導入形態・お見積りの相談もお気軽に。",
-    buttonLabel: "資料請求 / お問い合わせ",
+    heading: "デモで確認する",
+    body: "実装とUIを公式サイトでご確認ください。",
+    buttonLabel: "サイトを見る",
   },
 };
